@@ -1,0 +1,6 @@
+/home/sudo-li/CLionProjects/ftp_server/server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/sudo-li/CLionProjects/ftp_server/server/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/sudo-li/CLionProjects/ftp_server/server/cmake-build-debug/CMakeFiles/server.dir
+/home/sudo-li/CLionProjects/ftp_server/server/cmake-build-debug/common/CMakeFiles/rebuild_cache.dir
+/home/sudo-li/CLionProjects/ftp_server/server/cmake-build-debug/common/CMakeFiles/edit_cache.dir
+/home/sudo-li/CLionProjects/ftp_server/server/cmake-build-debug/common/CMakeFiles/common.dir

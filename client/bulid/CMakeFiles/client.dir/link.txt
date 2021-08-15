@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/client.dir/src/client.c.o  -o ../bin/client  -Wl,-rpath,/home/li/ftp_server/client/lib ../lib/libcommon.so 

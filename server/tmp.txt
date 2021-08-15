@@ -1,0 +1,11 @@
+-rw------- 1  ftp_server ftp_server 2220   Aug 15 10:25:33 .bash_history
+drwx------ 3  ftp_server ftp_server 4096   Aug 11 16:02:31 .cache
+-rw-r--r-- 1  ftp_server ftp_server 5905   Aug 15 08:40:42 client.c
+drwxrwxr-x 2  ftp_server ftp_server 4096   Aug 14 06:25:03 include
+-rw-r--r-- 1  ftp_server ftp_server 2218   Aug 15 08:23:19 install_vim.sh
+drwxr-xr-x 12 ftp_server ftp_server 4096   Aug 15 10:27:04 server
+-rw-r--r-- 1  ftp_server ftp_server 0      Aug 11 15:58:24 .sudo_as_admin_successful
+drwxrwxr-x 15 ftp_server ftp_server 4096   Aug 15 08:23:20 .vim
+drwxr-xr-x 2  ftp_server ftp_server 4096   Aug 15 08:32:16 .vim-fuf-data
+-rw------- 1  ftp_server ftp_server 2192   Aug 15 10:27:01 .viminfo
+-rw-rw-r-- 1  ftp_server ftp_server 15277  Aug 15 08:23:28 .vimrc

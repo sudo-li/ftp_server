@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/server.dir/src/ls.c.o CMakeFiles/server.dir/src/server.c.o -o ../bin/server  -Wl,-rpath,/home/sudo-li/CLionProjects/ftp_server/server/lib ../lib/libcommon.so 

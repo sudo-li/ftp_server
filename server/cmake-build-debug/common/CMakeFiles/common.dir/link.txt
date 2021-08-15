@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC -g -shared -Wl,-soname,libcommon.so -o ../../lib/libcommon.so CMakeFiles/common.dir/common.c.o 
