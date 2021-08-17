@@ -41,7 +41,10 @@ void print_reply(int rc) {
             log(GREEN"<Server>"NONE"226 Closing data connection. Requested file action successful.\n");
         }break;
         case 550: {
-            log(GREEN"<Server>"NONE"550 Requested action not taken. File unavailable.\n");
+            log(RED"<Server>"NONE"550 Requested action not taken. File unavailable.\n");
+        }break;
+        case 560: {
+            log(RED"<Server>"NONE"560 Requested action not taken. Directory not exist.\n");
         }break;
     }
 }
@@ -127,6 +130,7 @@ void ftpclient_login() {
  * @return
  */
 int ftpclient_read_cmd(char *buf, int size, struct command *cmd) {
+    int arg_count = 0;
     memset((void *)cmd, 0, sizeof(struct command));
     printf("ftp> ");
     fflush(stdout);
@@ -135,8 +139,16 @@ int ftpclient_read_cmd(char *buf, int size, struct command *cmd) {
     arg = strtok(buf, " ");
     arg = strtok(NULL, " ");
     if (arg != NULL) {
+        arg_count++;
         strncpy(cmd->arg, arg, strlen(arg));
     }
+    arg = strtok(NULL, " ");
+    if (arg != NULL) {
+        arg_count++;
+        strcat(cmd->arg, " ");
+        strncat(cmd->arg, arg, strlen(arg));
+    }
+    // 由于strtok分割后的字符串原字符串会变成第一个子串
     if (strcmp(buf, "list") == 0) {
         strcpy(cmd->code, "LIST");
     } else if (strcmp(buf, "get") == 0) {
@@ -154,7 +166,7 @@ int ftpclient_read_cmd(char *buf, int size, struct command *cmd) {
     strcpy(buf, cmd->code);
 
     //入如果还有参数 追加
-    if (arg != NULL) {
+    if (arg_count != 0) {
         strcat(buf, " ");
         strncat(buf, cmd->arg, strlen(cmd->arg));
     }
@@ -204,10 +216,15 @@ int ftp_client_get(int data_sock, char *path) {
 
 int ftp_client_put(int data_sock, char *arg) {
     char path[100] = {0};
+    char buffer[256] = {0};
+    strcpy(buffer,arg);
+    //对于客户端忽略PUT的第二个参数
     char *ind;
+    ind = rindex(buffer, ' ');
+    buffer[ind - buffer] = '\0';
     getcwd(path, sizeof(path));
     strcat(path, "/");
-    strcat(path, arg);
+    strcat(path, buffer);
     printf("path = %s\n", path);
     if (access(path, F_OK) != 0) {
         printf("文件不存在\n");
@@ -221,8 +238,16 @@ int ftp_client_put(int data_sock, char *arg) {
     return 0;
 }
 
-void ftp_client_cd(int data_sock, char *path) {
-
+int ftp_client_cd(int data_sock, char *path) {
+    int tmp;
+    if (recv(sock_control, (void *)&tmp, sizeof(tmp), 0) < 0) {
+        perror("reading massage from server\n");
+        return -1;
+    }
+    if (tmp == 1) {
+        return 0;
+    }
+    print_reply(tmp);
 }
 
 int main(int argc, char **argv) {

@@ -5,11 +5,11 @@ CMakeFiles/server.dir/src/ls.c.o
  ../common/common.h
  ../include/head.h
  ../include/ls.h
- /home/ftp_server/server/src/ls.c
+ /home/li/ftp_server/server/src/ls.c
 CMakeFiles/server.dir/src/server.c.o
  ../common/common.h
  ../include/color.h
  ../include/datatype.h
  ../include/head.h
  ../include/ls.h
- /home/ftp_server/server/src/server.c
+ /home/li/ftp_server/server/src/server.c

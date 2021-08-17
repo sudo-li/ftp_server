@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/ftp_server/server/common/common.c
+/home/li/ftp_server/server/common/common.c
 stdio.h
 -
 string.h
@@ -54,7 +54,7 @@ sys/socket.h
 arpa/inet.h
 -
 common.h
-/home/ftp_server/server/common/common.h
+/home/li/ftp_server/server/common/common.h
 
-/home/ftp_server/server/common/common.h
+/home/li/ftp_server/server/common/common.h
 

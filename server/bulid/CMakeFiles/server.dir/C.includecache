@@ -64,17 +64,25 @@ sys/time.h
 
 ../include/ls.h
 
-/home/ftp_server/server/src/server.c
-common.h
-/home/ftp_server/server/src/common.h
+/home/li/ftp_server/server/src/ls.c
 head.h
-/home/ftp_server/server/src/head.h
-color.h
-/home/ftp_server/server/src/color.h
-datatype.h
-/home/ftp_server/server/src/datatype.h
+/home/li/ftp_server/server/src/head.h
 ls.h
-/home/ftp_server/server/src/ls.h
+/home/li/ftp_server/server/src/ls.h
+common.h
+/home/li/ftp_server/server/src/common.h
+
+/home/li/ftp_server/server/src/server.c
+common.h
+/home/li/ftp_server/server/src/common.h
+head.h
+/home/li/ftp_server/server/src/head.h
+color.h
+/home/li/ftp_server/server/src/color.h
+datatype.h
+/home/li/ftp_server/server/src/datatype.h
+ls.h
+/home/li/ftp_server/server/src/ls.h
 ctype.h
 -
 

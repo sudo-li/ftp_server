@@ -6,5 +6,5 @@ C_FLAGS =   -std=gnu99
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/ftp_server/server/include -I/home/ftp_server/server/common 
+C_INCLUDES = -I/home/li/ftp_server/server/include -I/home/li/ftp_server/server/common 
 

@@ -14,8 +14,6 @@
 
 //realpath
 
-int data_listener;
-
 int ftp_server_put(int sock_control, int sock_data, char *path);
 int ftp_server_get(int sock_control, int sock_data, char *path);
 int ftp_server_list(int sock_control, int sock_data);
@@ -26,8 +24,10 @@ int recv_data(int sockfd, char *buffer, size_t buffer_size);
 int ftp_server_check_user(char *user, char *pass);
 void trimstr(char *str, int len);
 int ftp_server_recv_cmd(int sock_control, char *cmd, char *arg);
-int ftp_server_data_listen(int sock_control);
+int ftp_server_data_listen();
 int socket_acccpt(int sock_listen);
+
+int ftp_server_cd(int sock_control, int sock_data, char *path);
 
 int main(int argc, char **argv) {
     if (argc != 2) {
@@ -106,10 +106,11 @@ void ftpserver_process(int sock_control) {
         }
         if (rc == 200) {
             //创建数据链接
-            if ((sock_data = ftp_server_data_listen(sock_control)) < 0) {
+            if ((sock_data = ftp_server_data_listen()) < 0) {
                 close(sock_control);
                 exit(1);
             }
+            log(GREEN"<Accept>"NONE" : data connected!\n");
             //执行命令
             if (strcmp(cmd, "LIST") == 0) {
                 ftp_server_list(sock_control, sock_data);
@@ -123,13 +124,15 @@ void ftpserver_process(int sock_control) {
                 }
             } else if (strcmp(cmd, "CHEN") == 0) {
                 printf("cd\n");
+                ftp_server_cd(sock_control, sock_data, arg);
             }
             close(sock_data);
         }
     }
 }
 
-int ftp_server_data_listen(int sock_control) {
+
+int ftp_server_data_listen() {
     int sock_data;
     int sock_listen = socket_create(PORT);
     if (sock_listen < 0) {
@@ -162,7 +165,7 @@ int socket_acccpt(int sock_listen) {
  * @return
  */
 int ftp_server_recv_cmd(int sock_control, char *cmd, char *arg) {
-    int rc = 200;
+    int rc;
     char buffer[256] = {0};
     memset(cmd, 0, 5);
     memset(arg, 0, 256);
@@ -293,10 +296,33 @@ int send_response(int sockfd, int rc) {
 }
 
 int ftp_server_put(int sock_control, int sock_data, char *path) {
-
-    log(GREEN"<Accept>"NONE" : data connected!\n");
     printf("path = %s\n", path);
-    int fd = open(path, O_CREAT, 0644);
+    char buffer[256] = {0};
+    char tmp[256] = {0};
+    char *arg = NULL;
+    strcpy(buffer, path);
+    arg = strtok(buffer, " ");
+    printf("arg1 = %s\n", arg);
+    if (arg != NULL) {
+        arg = strtok(NULL, " ");
+    }
+    // 如果arg不是空那么arg就是第二个参数
+    if (arg != NULL) {
+
+        if (access(arg, F_OK) != 0) {
+            printf("%s 路径不存在\n", arg);
+            return -1;
+        }
+        printf("arg2 = %s\n", arg);
+        strcpy(tmp, buffer);
+        int len = strlen(arg);
+        strncpy(buffer, arg, len);
+        buffer[len] = '\0';
+        strcat(buffer, "/");
+        strcat(buffer, tmp);
+    }
+    printf("buffer = %s\n", buffer);
+    int fd = open(buffer, O_CREAT, 0644);
     if (fd < 0) {
         perror("open");
         send_response(sock_control, 550);
@@ -306,7 +332,7 @@ int ftp_server_put(int sock_control, int sock_data, char *path) {
         send_response(sock_control, 150);
     }
     close(fd);
-    if (recv_file_from_socket(sock_data, path) < 0) {
+    if (recv_file_from_socket(sock_data, buffer) < 0) {
         perror("recv_file_from_socket");
         send_response(sock_control, 550);
         return -1;
@@ -338,8 +364,32 @@ int ftp_server_list(int sock_control, int sock_data) {
     }
     //开始发送
     send_response(sock_control, 1);
-    send_file_to_socket("server/tmp.txt", sock_data);
+    send_file_to_socket("/home/ftp_server/server/tmp.txt", sock_data);
     log(GREEN"<Accept>"NONE" : ls connected!\n");
     send_response(sock_control, 226); //完成发送
     return 0;
+}
+
+int ftp_server_cd(int sock_control, int sock_data, char *path) {
+    char buffer[256] = {0};
+    if (strlen(path) == 0) {
+        strcpy(buffer, "/home/ftp_server");
+    } else {
+        strcpy(buffer, path);
+    }
+    if (chdir(buffer) < 0) {
+        perror("chdir");
+        send_response(sock_control, 560);
+        return -1;
+    }
+    send_response(sock_control, 1);
+    return 0;
+
+//    char buffer[256] = {0};
+//    getcwd(buffer, sizeof(buffer));
+//    if (access(path, F_OK) != 0) {
+//        printf("%s 路径不存在\n", path);
+//        send_response(sock_control, 550);
+//        return -1;
+//    }
 }

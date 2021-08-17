@@ -96,7 +96,6 @@ int recv_file_from_socket(int sockfd, char *name) {
     }
     while (1) {
         char buff[1024] = {0};
-        printf("while(1)\n");
         int rsize = recv(sockfd, buff, sizeof(buff), 0);
         if (rsize <= 0) {
             close(fd);

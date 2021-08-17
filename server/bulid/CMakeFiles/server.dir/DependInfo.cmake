@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/ftp_server/server/src/ls.c" "/home/ftp_server/server/bulid/CMakeFiles/server.dir/src/ls.c.o"
-  "/home/ftp_server/server/src/server.c" "/home/ftp_server/server/bulid/CMakeFiles/server.dir/src/server.c.o"
+  "/home/li/ftp_server/server/src/ls.c" "/home/li/ftp_server/server/bulid/CMakeFiles/server.dir/src/ls.c.o"
+  "/home/li/ftp_server/server/src/server.c" "/home/li/ftp_server/server/bulid/CMakeFiles/server.dir/src/server.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -17,7 +17,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/ftp_server/server/bulid/common/CMakeFiles/common.dir/DependInfo.cmake"
+  "/home/li/ftp_server/server/bulid/common/CMakeFiles/common.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

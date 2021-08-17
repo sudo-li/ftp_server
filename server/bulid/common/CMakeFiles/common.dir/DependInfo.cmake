@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/ftp_server/server/common/common.c" "/home/ftp_server/server/bulid/common/CMakeFiles/common.dir/common.c.o"
+  "/home/li/ftp_server/server/common/common.c" "/home/li/ftp_server/server/bulid/common/CMakeFiles/common.dir/common.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

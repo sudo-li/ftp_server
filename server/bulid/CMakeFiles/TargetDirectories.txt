@@ -1,6 +1,6 @@
-/home/ftp_server/server/bulid/CMakeFiles/rebuild_cache.dir
-/home/ftp_server/server/bulid/CMakeFiles/edit_cache.dir
-/home/ftp_server/server/bulid/CMakeFiles/server.dir
-/home/ftp_server/server/bulid/common/CMakeFiles/rebuild_cache.dir
-/home/ftp_server/server/bulid/common/CMakeFiles/edit_cache.dir
-/home/ftp_server/server/bulid/common/CMakeFiles/common.dir
+/home/li/ftp_server/server/bulid/CMakeFiles/rebuild_cache.dir
+/home/li/ftp_server/server/bulid/CMakeFiles/edit_cache.dir
+/home/li/ftp_server/server/bulid/CMakeFiles/server.dir
+/home/li/ftp_server/server/bulid/common/CMakeFiles/rebuild_cache.dir
+/home/li/ftp_server/server/bulid/common/CMakeFiles/edit_cache.dir
+/home/li/ftp_server/server/bulid/common/CMakeFiles/common.dir

@@ -1,4 +1,4 @@
-# Install script for directory: /home/ftp_server/server
+# Install script for directory: /home/li/ftp_server/server
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/ftp_server/server/bulid/common/cmake_install.cmake")
+  include("/home/li/ftp_server/server/bulid/common/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ftp_server/server/bulid/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/li/ftp_server/server/bulid/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

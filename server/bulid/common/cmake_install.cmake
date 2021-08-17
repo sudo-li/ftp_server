@@ -1,4 +1,4 @@
-# Install script for directory: /home/ftp_server/server/common
+# Install script for directory: /home/li/ftp_server/server/common
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

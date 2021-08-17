@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ftp_server/server
+CMAKE_SOURCE_DIR = /home/li/ftp_server/server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ftp_server/server/bulid
+CMAKE_BINARY_DIR = /home/li/ftp_server/server/bulid
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/ftp_server/server/bulid && $(CMAKE_COMMAND) -E cmake_progress_start /home/ftp_server/server/bulid/CMakeFiles /home/ftp_server/server/bulid/common/CMakeFiles/progress.marks
-	cd /home/ftp_server/server/bulid && $(MAKE) -f CMakeFiles/Makefile2 common/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ftp_server/server/bulid/CMakeFiles 0
+	cd /home/li/ftp_server/server/bulid && $(CMAKE_COMMAND) -E cmake_progress_start /home/li/ftp_server/server/bulid/CMakeFiles /home/li/ftp_server/server/bulid/common/CMakeFiles/progress.marks
+	cd /home/li/ftp_server/server/bulid && $(MAKE) -f CMakeFiles/Makefile2 common/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/li/ftp_server/server/bulid/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ftp_server/server/bulid && $(MAKE) -f CMakeFiles/Makefile2 common/clean
+	cd /home/li/ftp_server/server/bulid && $(MAKE) -f CMakeFiles/Makefile2 common/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ftp_server/server/bulid && $(MAKE) -f CMakeFiles/Makefile2 common/preinstall
+	cd /home/li/ftp_server/server/bulid && $(MAKE) -f CMakeFiles/Makefile2 common/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ftp_server/server/bulid && $(MAKE) -f CMakeFiles/Makefile2 common/preinstall
+	cd /home/li/ftp_server/server/bulid && $(MAKE) -f CMakeFiles/Makefile2 common/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ftp_server/server/bulid && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/li/ftp_server/server/bulid && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 common/CMakeFiles/common.dir/rule:
-	cd /home/ftp_server/server/bulid && $(MAKE) -f CMakeFiles/Makefile2 common/CMakeFiles/common.dir/rule
+	cd /home/li/ftp_server/server/bulid && $(MAKE) -f CMakeFiles/Makefile2 common/CMakeFiles/common.dir/rule
 .PHONY : common/CMakeFiles/common.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ common: common/CMakeFiles/common.dir/rule
 
 # fast build rule for target.
 common/fast:
-	cd /home/ftp_server/server/bulid && $(MAKE) -f common/CMakeFiles/common.dir/build.make common/CMakeFiles/common.dir/build
+	cd /home/li/ftp_server/server/bulid && $(MAKE) -f common/CMakeFiles/common.dir/build.make common/CMakeFiles/common.dir/build
 .PHONY : common/fast
 
 common.o: common.c.o
@@ -131,7 +131,7 @@ common.o: common.c.o
 
 # target to build an object file
 common.c.o:
-	cd /home/ftp_server/server/bulid && $(MAKE) -f common/CMakeFiles/common.dir/build.make common/CMakeFiles/common.dir/common.c.o
+	cd /home/li/ftp_server/server/bulid && $(MAKE) -f common/CMakeFiles/common.dir/build.make common/CMakeFiles/common.dir/common.c.o
 .PHONY : common.c.o
 
 common.i: common.c.i
@@ -140,7 +140,7 @@ common.i: common.c.i
 
 # target to preprocess a source file
 common.c.i:
-	cd /home/ftp_server/server/bulid && $(MAKE) -f common/CMakeFiles/common.dir/build.make common/CMakeFiles/common.dir/common.c.i
+	cd /home/li/ftp_server/server/bulid && $(MAKE) -f common/CMakeFiles/common.dir/build.make common/CMakeFiles/common.dir/common.c.i
 .PHONY : common.c.i
 
 common.s: common.c.s
@@ -149,7 +149,7 @@ common.s: common.c.s
 
 # target to generate assembly for a file
 common.c.s:
-	cd /home/ftp_server/server/bulid && $(MAKE) -f common/CMakeFiles/common.dir/build.make common/CMakeFiles/common.dir/common.c.s
+	cd /home/li/ftp_server/server/bulid && $(MAKE) -f common/CMakeFiles/common.dir/build.make common/CMakeFiles/common.dir/common.c.s
 .PHONY : common.c.s
 
 # Help Target
@@ -175,6 +175,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ftp_server/server/bulid && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/li/ftp_server/server/bulid && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -266,10 +266,10 @@ dir *open_dir(const char *pathname) {
 int ls_to_file() {
     dir *dp;
     l_flag = 1;
-    chdir("/home/ftp_server");
+    //chdir("/home/ftp_server");
 
     int fd;
-    if ((fd = open("/home/ftp_server/server/tmp.txt", O_CREAT | O_WRONLY, 0644)) < 0) {
+    if ((fd = open("/home/ftp_server/server/tmp.txt", O_CREAT | O_WRONLY | O_TRUNC, 0644)) < 0) {
         perror("open");
         return -1;
     }
