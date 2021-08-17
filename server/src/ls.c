@@ -214,6 +214,10 @@ dir *open_dir(const char *pathname) {
                 dirp->cnt--;
                 continue;
             }
+            if (strncmp(direntp->d_name, ".", 1) == 0) {
+                dirp->cnt--;
+                continue;
+            }
         }
         if ((filep = realloc(dirp->filep, (dirp->cnt + 1) * sizeof(file))) == NULL) {
             perror("realloc");
@@ -266,6 +270,7 @@ dir *open_dir(const char *pathname) {
 int ls_to_file() {
     dir *dp;
     l_flag = 1;
+    a_flag = 0;
     //chdir("/home/ftp_server");
 
     int fd;
