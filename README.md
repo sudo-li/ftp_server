@@ -4,6 +4,9 @@ ftp_server
 A simple TCP based FTP server,which supports **list**,**get**,**put** and **cd**.Subsequent functions are still under development.
 
 ## Building
+
+**Please modify the IP address and compile it before use. The location of the moditied IP is in the datatype.h file under the client/include directory.**  
+
 You must have cmake and make and gcc install.Execute the following three commands to complete the compilation,and the executable fiel will be generated in the bin directory under the project directory.  
 ```
 cd build  

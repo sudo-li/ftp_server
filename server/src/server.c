@@ -272,9 +272,9 @@ void trimstr(char *str, int len) {
 
 int recv_data(int sockfd, char *buffer, size_t buffer_size) {
     int ret;
-    memset(buffer, 0, sizeof(buffer_size));
+    memset(buffer, 0, buffer_size);
     ret = recv(sockfd, (void *)buffer, buffer_size, 0);
-    if (ret < 0) {
+    if (ret <= 0) {
         return -1;
     }
     return ret;
