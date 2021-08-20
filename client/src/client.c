@@ -94,12 +94,12 @@ void ftpclient_login() {
 
     //获取密码
     fflush(stdout);
-    while (strlen(pass) == 0) {
-        printf("Password: ");
-        fflush(stdout);
-        read_input(pass, sizeof(pass));
-    }
-    //char *pass = getpass("Password: ");
+    //while (strlen(pass) == 0) {
+    //    printf("Password: ");
+    //    fflush(stdout);
+    //    read_input(pass, sizeof(pass));
+    //}
+    strcpy(pass, getpass("Password: "));
     //发送密码到服务器
     strcpy(cmd.code, "PASS");
     strcpy(cmd.arg, pass);
@@ -225,7 +225,7 @@ int ftp_client_put(int data_sock, char *arg) {
     getcwd(path, sizeof(path));
     strcat(path, "/");
     strcat(path, buffer);
-    printf("path = %s\n", path);
+    //printf("path = %s\n", path);
     if (access(path, F_OK) != 0) {
         printf("文件不存在\n");
         return -1;
@@ -251,13 +251,15 @@ int ftp_client_cd(int data_sock, char *path) {
 }
 
 int main(int argc, char **argv) {
-    if (argc != 3) {
-        printf("argc count!\n");
-        exit(0);
-    }
+    //if (argc != 3) {
+    //    printf("argc count!\n");
+    //    exit(0);
+    //}
     int retcode, data_sock;
-    char *host = argv[1]; // 服务器主机名
-    int port = atoi(argv[2]); //端口
+    //char *host = argv[1]; // 服务器主机名
+    //int port = atoi(argv[2]); //端口
+    char host[15] = "8.140.160.253"; // 服务器主机名
+    int port = 65000; //端口
 
     if ((sock_control = socket_connect(host, port)) < 0) {
         perror("socket_connect");
@@ -282,7 +284,7 @@ int main(int argc, char **argv) {
             log(RED"<Error>"NONE" : Invalid commend!\n");
             continue;
         }
-        printf("buffer = %s\n", buffer);
+        //printf("buffer = %s\n", buffer);
         //发送命令到服务器
         if (send(sock_control, buffer, strlen(buffer), 0) < 0) {
             perror("sned");
@@ -324,9 +326,7 @@ int main(int argc, char **argv) {
                 }
                 ftp_client_put(data_sock, cmd.arg);
                 close(data_sock);
-                printf("befor\n");
                 print_reply(read_reply());
-                printf("end\n");
                 continue;
             } else if (strcmp(cmd.code, "CHEN") == 0) {
                 ftp_client_cd(data_sock, cmd.arg);
