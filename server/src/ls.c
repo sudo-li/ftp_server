@@ -52,21 +52,20 @@ void get_file_mode(int mode, char *buff) {
             }
         }
     }
-    return ;
 }
 
-int get_digitlen (long int n) {
+int get_digit_len (long int n) {
     char buf[BUFSIZ];
     snprintf(buf, BUFSIZ, "%ld", n);
     return strlen(buf);
 }
 
-int get_stringlen(char *str) {
+int get_string_len(char *str) {
     char buf[BUFSIZ];
     return sprintf(buf, "%s", str);
 }
 
-int cmpname(const void *s1, const void *s2) {
+int cmp_name(const void *s1, const void *s2) {
     char *name1 = ((file*)s1)->name;
     char *name2 = ((file*)s2)->name;
     if (strcmp(name1, ".") == 0 || strcmp(name2, ".") == 0) {
@@ -105,7 +104,7 @@ int free_dirs(dir *dp) {
     return 0;
 }
 
-void copyinfo(file *fp, const struct stat *sp, const char *pathname) {
+void copy_info(file *fp, const struct stat *sp, const char *pathname) {
     fp->dirp = NULL;
     fp->ino = sp->st_ino;
     fp->uid = sp->st_uid;
@@ -140,7 +139,7 @@ int getfile_time(int atime, char *buff) {
 
 int get_file_info(dir *dp, char *buff) {
     int rsize = 0;
-    char buf[10] = {0};
+    char buf[11] = {0};
     char tmp[BUFSIZ] = {0};
     
     if (dp == NULL || dp->filep == NULL) {
@@ -198,7 +197,7 @@ dir *open_dir(const char *pathname) {
     if (!S_ISDIR(stbuf.st_mode)) { //如果是文件
         file_flag = 1;
         dirp->cnt = 1;
-        copyinfo(dirp->filep, &stbuf, pathname);
+        copy_info(dirp->filep, &stbuf, pathname);
         return dirp;
     }
     
@@ -233,32 +232,32 @@ dir *open_dir(const char *pathname) {
             closedir(dp);
             return NULL;
         }
-        copyinfo(dirp->filep + dirp->cnt, &stbuf, direntp->d_name);
+        copy_info(dirp->filep + dirp->cnt, &stbuf, direntp->d_name);
         if (S_ISLNK(stbuf.st_mode) && l_flag) {
             int n = readlink(abspath, link_path, sizeof(link_path) - 1);
             strcat((dirp->filep + (dirp->cnt))->name, " -> ");
             strncat((dirp->filep + (dirp->cnt))->name, link_path, n);
         }
         /* 获取最长的links*/
-        if ((w = get_digitlen(dirp->filep[dirp->cnt].links)) > dirp->links_max_wid) {
+        if ((w = get_digit_len(dirp->filep[dirp->cnt].links)) > dirp->links_max_wid) {
             dirp->links_max_wid = w;
         }
         /* 获取最长的用户名 */
-        if ((w = get_stringlen(getpwuid(dirp->filep[dirp->cnt].uid)->pw_name))\
-            > dirp->user_max_wid) {
+        if ((w = get_string_len(getpwuid(dirp->filep[dirp->cnt].uid)->pw_name))\
+ > dirp->user_max_wid) {
             dirp->user_max_wid = w;
         }
         /* 获取最长的组名 */
-        if ((w = get_stringlen(getgrgid(dirp->filep[dirp->cnt].gid)->gr_name))\
-            > dirp->group_max_wid) {
+        if ((w = get_string_len(getgrgid(dirp->filep[dirp->cnt].gid)->gr_name))\
+ > dirp->group_max_wid) {
             dirp->group_max_wid = w;
         }
         if (S_ISCHR(stbuf.st_mode) || S_ISBLK(stbuf.st_mode)) {
-            w = get_digitlen(major(dirp->filep[dirp->cnt].dev));
-            w += get_digitlen(minor(dirp->filep[dirp->cnt].dev)) + 1; //+1因为中间有,
+            w = get_digit_len(major(dirp->filep[dirp->cnt].dev));
+            w += get_digit_len(minor(dirp->filep[dirp->cnt].dev)) + 1; //+1因为中间有,
             if (w > dirp->size_max_wid) dirp->size_max_wid = w;
         } else {
-            if ((w = get_digitlen(dirp->filep[dirp->cnt].size)) > dirp->size_max_wid) {
+            if ((w = get_digit_len(dirp->filep[dirp->cnt].size)) > dirp->size_max_wid) {
                 dirp->size_max_wid = w;
             }
         }
@@ -272,7 +271,6 @@ int ls_to_file() {
     l_flag = 1;
     a_flag = 0;
     //chdir("/home/ftp_server");
-
     int fd;
     if ((fd = open("/home/ftp_server/server/tmp.txt", O_CREAT | O_WRONLY | O_TRUNC, 0644)) < 0) {
         perror("open");
@@ -280,7 +278,7 @@ int ls_to_file() {
     }
 
     if ((dp = open_dir("."))) {
-        sort_dir(dp, cmpname);
+        sort_dir(dp, cmp_name);
         int rsize = get_file_info(dp, ls_buff);
         //printf("%s", ls_buff);
         ssize_t ret = write(fd, ls_buff, rsize);
